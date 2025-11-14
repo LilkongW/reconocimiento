@@ -1,6 +1,7 @@
 // App.js
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// AQUÍ ESTÁ LA CORRECCIÓN: Se cambió 'BrowserRouter' por 'HashRouter'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import UserRegister from './pages/registro';
@@ -107,6 +108,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {/* Este componente <Router> ahora es un 'HashRouter' 
+        gracias al cambio en la importación (línea 4).
+        No necesita 'basename'.
+      */}
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
