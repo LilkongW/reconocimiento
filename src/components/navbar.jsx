@@ -1,5 +1,6 @@
 // Navbar.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // <--- 1. IMPORTAMOS useNavigate
 import {
   Box,
   Drawer,
@@ -43,11 +44,12 @@ import {
 
 
 
-const Navbar = ({ navigate, currentPage }) => {
+const Navbar = ({ currentPage }) => { // <--- 2. ELIMINAMOS LA PROP 'navigate'
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate(); // <--- 3. USAMOS EL HOOK
 
   // Colores basados en #173974
   const primaryColor = '#173974';
@@ -69,7 +71,7 @@ const Navbar = ({ navigate, currentPage }) => {
   };
 
   const handleNavigation = (path) => {
-    navigate(path);
+    navigate(path); // Esto ahora usa el 'navigate' del hook, que SÍ funciona con HashRouter
     if (isMobile) {
       setMobileOpen(false);
     }
@@ -78,7 +80,7 @@ const Navbar = ({ navigate, currentPage }) => {
   const handleLogout = () => {
     // Aquí iría la lógica de logout
     console.log('Cerrando sesión...');
-    navigate('/');
+    navigate('/'); // Esto también usará el 'navigate' del hook
   };
 
   const drawerContent = (
@@ -306,7 +308,7 @@ const Navbar = ({ navigate, currentPage }) => {
             keepMounted: true,
           }}
           sx={{
-            '& .MuiDrawer-paper': { 
+            '& .MMuiDrawer-paper': { 
               boxSizing: 'border-box', 
               width: 280,
               border: 'none',

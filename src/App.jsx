@@ -71,14 +71,11 @@ const Footer = () => (
 
 // Layout modificado
 const LayoutWithNavbar = ({ children, currentPage }) => {
-  const navigate = (path) => {
-    window.history.pushState({}, '', path);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  };
+
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <Navbar navigate={navigate} currentPage={currentPage} />
+      <Navbar currentPage={currentPage} />
       
       {/* Contenedor Principal (Lado derecho) */}
       <Box 
